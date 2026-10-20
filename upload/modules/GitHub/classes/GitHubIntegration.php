@@ -127,8 +127,8 @@ class GitHubIntegration extends IntegrationBase {
         // Link integration if user registered using GitHub oauth
         if (Session::exists('oauth_register_data')) {
             $data = json_decode(Session::get('oauth_register_data'), true);
-            if ($data['provider'] == 'github' && isset($data['data']['name'])) {
-                $username = $data['data']['name'];
+            if ($data['provider'] == 'github' && isset($data['data']['login'])) {
+                $username = $data['data']['login'];
                 $github_id = $data['id'];
                 if ($this->validateIdentifier($github_id) && $this->validateUsername($username)) {
                     $integrationUser = new IntegrationUser($this);
